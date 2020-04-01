@@ -1,0 +1,8 @@
+FibonacciApp/node_modules
+/target/
+.classpath
+.project
+.settings
+.idea
+.DS_Store
+/.metadata/
