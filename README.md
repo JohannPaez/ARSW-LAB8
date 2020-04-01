@@ -1,4 +1,7 @@
-### Escuela Colombiana de Ingeniería
+﻿### Escuela Colombiana de Ingeniería
+
+Ip azure http://104.42.9.63:3000/fibonacci/
+
 ### Arquitecturas de Software - ARSW
 
 ## Escalamiento en Azure con Maquinas Virtuales, Sacale Sets y Service Plans
