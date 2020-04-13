@@ -1,8 +1,17 @@
 ﻿### Escuela Colombiana de Ingeniería
 
-Ip azure http://104.42.9.63:3000/fibonacci/
-
 ### Arquitecturas de Software - ARSW
+
+### Integrantes
+
+- **Juan Alberto Mejía Schuster**
+- **Johann Sebastian Páez Campos**
+
+### Links a las preguntas
+
+[Preguntas parte 1](#preguntas-parte-1)
+
+[Preguntas parte 2](#preguntas-parte-2)
 
 ## Escalamiento en Azure con Maquinas Virtuales, Sacale Sets y Service Plans
 
@@ -27,7 +36,7 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
     * SSH publi key = Su llave ssh publica
 
 ![Imágen 1](images/part1/part1-vm-basic-config.png)
-
+   
 2. Para conectarse a la VM use el siguiente comando, donde las `x` las debe remplazar por la IP de su propia VM.
 
     `ssh scalability_lab@xxx.xxx.xxx.xxx`
@@ -86,7 +95,7 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
 12. Evalue el escenario de calidad asociado al requerimiento no funcional de escalabilidad y concluya si usando este modelo de escalabilidad logramos cumplirlo.
 13. Vuelva a dejar la VM en el tamaño inicial para evitar cobros adicionales.
 
-**Preguntas**
+## Preguntas parte 1
 
 1. ¿Cuántos y cuáles recursos crea Azure junto con la VM?
 
@@ -109,13 +118,40 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
    - Debemos crear un *Inbound port rule* para abrir el puerto utilizado en los experimientos, permitiendo el tráfico de entrada y salida de red.
 4. Adjunte tabla de tiempos e interprete por qué la función tarda tando tiempo.
 5. Adjunte imágen del consumo de CPU de la VM e interprete por qué la función consume esa cantidad de CPU.
+
+![](https://github.com/JohannPaez/ARSW-LAB8/blob/master/images/Test/1cpu-0.75%20GiB/1000000-1090000.PNG)
+
+Cada pico de la gráfica es una consulta, no se puede ver en la imagen pero la línea a la que todas llegan es el 100% de la CPU, en esta primera parte solo tenemos un procesador, no es posible para el servidor distribuir el cálculo en varios procesadores y la aplicación no está optimizada lo que causa el 100% del uso.
+
 6. Adjunte la imagen del resumen de la ejecución de Postman. Interprete:
-    * Tiempos de ejecución de cada petición.
-    * Si hubo fallos documentelos y explique.
-7. ¿Cuál es la diferencia entre los tamaños `B2ms` y `B1ls` (no solo busque especificaciones de infraestructura)?
-8. ¿Aumentar el tamaño de la VM es una buena solución en este escenario?, ¿Qué pasa con la FibonacciApp cuando cambiamos el tamaño de la VM?
+
+![](https://github.com/JohannPaez/ARSW-LAB8/blob/master/images/Test/1cpu-0.75%20GiB/newman.PNG)
+
+  - En la imagen podemos ver que el tiempo promedio de las 10 peticiones fue de 2 minutos con 26 segundos, la petición más demorada tomó 4        minutos y 11 segundos en ser completada.
+
+7. ¿Cuál es la diferencia entre los tamaños `A0` y `A3` (no solo busque especificaciones de infraestructura)?
+
+Nombre | vCPU | Memoria | NIC s | Tamaño total de disco | Tamaño máximo de la información(1023GBc/u) | Max. IOPS (300 per disk)
+--- |--- |--- |--- |--- |--- |--- |
+A0 | 1 | 768 MB | 2 | 20 GB | 1 | 1 x 300
+A3 | 4 | 7 GB | 2 | 120 GB | 8 | 8 x 300
+
+8. ¿Aumentar el tamaño de la VM es una buena solución en este escenario?
+
+      No, debido a que no se puede determinar con seguridad cual va a ser la carga del servicio, para el ejercicio que realizamos si podemos ver una mejora en el rendimiento, pero en un caso real la solución solo es temporal si se aumenta la demanda del servicio un escalamiento vertical no es la estrategia a seguir para mantener el servicio corriendo.
+      
+   ¿Qué pasa con la FibonacciApp cuando cambiamos el tamaño de la VM?
+   
+      La aplicación ahora cuenta con mas recursos para calcular la secuencia, se ve una mejora en los tiempos de respuesta, pero no soluciona la mala optimización de la aplicación.
+      
 9. ¿Qué pasa con la infraestructura cuando cambia el tamaño de la VM? ¿Qué efectos negativos implica?
+
+      Al cambiar el tamaño la maquina se debe reiniciar, esto afecta la disponibilidad de nuestro servicio , por unos minutos cualquier petición será ignorada.
+      
 10. ¿Hubo mejora en el consumo de CPU o en los tiempos de respuesta? Si/No ¿Por qué?
+
+      Si, los tiempos de respuesta se redujeron a la mitad y el consumo de la cpu no supero el 30%, esto se debe a que la aplicación contó con más recursos para realizar los cálculos y podía manejar más solicitudes simultaneas
+      
 11. Aumente la cantidad de ejecuciones paralelas del comando de postman a `4`. ¿El comportamiento del sistema es porcentualmente mejor?
 
 ### Parte 2 - Escalabilidad horizontal
@@ -202,7 +238,7 @@ newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALAN
 newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALANCING_AZURE].postman_environment.json -n 10
 ```
 
-**Preguntas**
+## Preguntas parte 2
 
 * ¿Cuáles son los tipos de balanceadores de carga en Azure y en qué se diferencian?, ¿Qué es SKU, qué tipos hay y en qué se diferencian?, ¿Por qué el balanceador de carga necesita una IP pública?
 * ¿Cuál es el propósito del *Backend Pool*?
