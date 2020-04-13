@@ -89,8 +89,24 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
 **Preguntas**
 
 1. ¿Cuántos y cuáles recursos crea Azure junto con la VM?
+
+   Hay 6 recursos que Azure crea junto con la VM y son:
+      - Disco
+      - Interfaz de Red
+      - Dirección IP Pública
+      - Grupo de Seguridad de Red
+      - Red Virtual
+      - Cuenta de Almacenamiento
 2. ¿Brevemente describa para qué sirve cada recurso?
+   -  Disco: Se utiliza para aumentar la capacidad de almacenamiento de la VM.
+   - Interfaz de Red: Es como una tarjeta de red, permite que la VM pueda comunicarse con otros recursos de la red local, así como la comunación hacía internet. 
+   - Dirección IP Pública: Es la dirección IP, que nos permite acceder al recurso remotamente, mediante SSH, por ejemplo.
+   - Grupo de Seguridad de Red: Es el grupo que contiene las reglas o normas que nos permiten garantizar una mejor seguridad en nuestra VM, restringiendo el tráfico de entrada o salida hacía la red a partir de los recursos disponibles por Azure.
+   - Red Virtual: Es una red privada en Azure la cual permite comunicar la VM con distintos recursos (internet, redes on-premise) de manera segura.
+   - Cuenta de Almacenamiento: Es la que contiene todos los datos de Azure Storage (archivos, discos, etc).
 3. ¿Al cerrar la conexión ssh con la VM, por qué se cae la aplicación que ejecutamos con el comando `npm FibonacciApp.js`? ¿Por qué debemos crear un *Inbound port rule* antes de acceder al servicio?
+   - La aplicación se cae debido a que al cerrar la conexión ssh con la VM, se lanza un llamado a todos los procesos para que se cierren, luego forever tiene la tarea de mantener la ejecución del script, esto para que cuando se intente cerrar el proceso, lo vuelva a ejecutar y se mantenga el servicio activo.
+   - Debemos crear un *Inbound port rule* para abrir el puerto utilizado en los experimientos, permitiendo el tráfico de entrada y salida de red.
 4. Adjunte tabla de tiempos e interprete por qué la función tarda tando tiempo.
 5. Adjunte imágen del consumo de CPU de la VM e interprete por qué la función consume esa cantidad de CPU.
 6. Adjunte la imagen del resumen de la ejecución de Postman. Interprete:
