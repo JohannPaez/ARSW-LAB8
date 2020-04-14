@@ -265,7 +265,7 @@ http://52.155.223.248/fibonacci/1
 
 2. Realice las pruebas de carga con `newman` que se realizaron en la parte 1 y haga un informe comparativo donde contraste: tiempos de respuesta, cantidad de peticiones respondidas con éxito, costos de las 2 infraestrucruras, es decir, la que desarrollamos con balanceo de carga horizontal y la que se hizo con una maquina virtual escalada.
 
-## informe
+## Informe
 ![](https://github.com/JohannPaez/ARSW-LAB8/blob/master/images/part2/Balanceador/Parte2_PruebasParte1.png)
 
 ![](https://github.com/JohannPaez/ARSW-LAB8/blob/master/images/part2/Balanceador/Parte2_PruebasParte1_Tabla.png)
@@ -414,10 +414,15 @@ Se puede utilizar el grupo de seguridad de red Azure para filtrar el tráfico de
 ## Bibliografía 
 
 https://docs.microsoft.com/en-us/azure/virtual-network/public-ip-address-prefix
+
 https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview
+
 https://docs.microsoft.com/en-us/azure/virtual-network/manage-virtual-network
+
 https://docs.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview
+
 https://docs.microsoft.com/en-us/azure/availability-zones/az-overview
+
 https://docs.microsoft.com/bs-latn-ba/azure/vpn-gateway/about-zone-redundant-vnet-gateways
 
 
