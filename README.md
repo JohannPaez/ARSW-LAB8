@@ -164,6 +164,10 @@ Cada pico de la gráfica es una consulta, no se puede ver en la imagen pero la l
 
 7. ¿Cuál es la diferencia entre los tamaños `A0` y `A3` (no solo busque especificaciones de infraestructura)?
 
+      La principal diferencia es que los despliegues del cliente pueden afectar el rendimiento del tamaño A0 ya que este está suscrito en el hardware físico, sin embargo el tamaño A0 es más económico que el tamaño A3.
+      
+      En la siguiente tabla se muestran algunas diferencias entre estos tamaños:
+
 Nombre | vCPU | Memoria | NIC s | Tamaño total de disco | Tamaño máximo de la información(1023GBc/u) | Max. IOPS (300 per disk)
 --- |--- |--- |--- |--- |--- |--- |
 A0 | 1 | 768 MB | 2 | 20 GB | 1 | 1 x 300
@@ -186,6 +190,8 @@ A3 | 4 | 7 GB | 2 | 120 GB | 8 | 8 x 300
       Si, los tiempos de respuesta se redujeron a la mitad y el consumo de la cpu no supero el 30%, esto se debe a que la aplicación contó con más recursos para realizar los cálculos y podía manejar más solicitudes simultaneas
       
 11. Aumente la cantidad de ejecuciones paralelas del comando de postman a `4`. ¿El comportamiento del sistema es porcentualmente mejor?
+
+      No es porcentualmente mejor, pues la cantidad de peticiones realizadas con exito disminuyó aproximadamente un 15% con respecto a las 2 peticiones anteriores, sin embargo en ambos casos se presento el mismo consumo de CPU.
 
 ### Parte 2 - Escalabilidad horizontal
 
@@ -410,6 +416,8 @@ Se puede utilizar el grupo de seguridad de red Azure para filtrar el tráfico de
      [Informe](#informe)
 
 * Presente el Diagrama de Despliegue de la solución.
+
+![](images/Component%20Diagram.png)
 
 ## Bibliografía 
 
